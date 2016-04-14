@@ -46,36 +46,16 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 	public function loadPageContent() {
 		?>
 		<ul>
-			<li>
-				<strong><?php _e('Test Mail', 'smtp-mailing-queue')?></strong>:
-				<?php _e('Test your email settings by sendig directly or adding test mail into queue.', 'smtp-mailing-queue')?>
-			</li>
-			<li>
-				<strong><?php _e('Process Queue', 'smtp-mailing-queue')?></strong>:
-				<?php _e('Start queue processing manually. Your set queue limit will still be obeyed, if set.', 'smtp-mailing-queue')?>
-			</li>
-			<li>
-				<strong><?php _e('List Queue', 'smtp-mailing-queue')?></strong>:
-				<?php _e('Show all mails in mailing queue.', 'smtp-mailing-queue')?>
-			</li>
-			<li>
-				<strong><?php _e('Sending Errors', 'smtp-mailing-queue')?></strong>:
-				<?php _e("Emails that could'nt be sent.", 'smtp-mailing-queue')?>
-			</li>
+			<li><strong>Test Mail</strong>: Test your email settings by sendig directly or adding test mail into queue.</li>
+			<li><strong>Process Queue</strong>: Start queue processing manually. Your set queue limit will still be obeyed, if set.</li>
+			<li><strong>List Queue</strong>: Show all mails in mailing queue.</li>
+			<li><strong>Sending Errors</strong>: Emails that could'nt be sent.</li>
 		</ul>
 		<h3 class="nav-tab-wrapper">
-			<a href="?page=smtp-mailing-queue&tab=tools&tool=testmail" class="nav-tab <?php echo $this->activeTool == 'testmail' ? 'nav-tab-active' : '' ?>">
-				<?php _e('Test Mail', 'smtp-mailing-queue')?>
-			</a>
-			<a href="?page=smtp-mailing-queue&tab=tools&tool=processQueue" class="nav-tab <?php echo $this->activeTool == 'processQueue' ? 'nav-tab-active' : '' ?>">
-				<?php _e('Process Queue', 'smtp-mailing-queue')?>
-			</a>
-			<a href="?page=smtp-mailing-queue&tab=tools&tool=listQueue" class="nav-tab <?php echo $this->activeTool == 'listQueue' ? 'nav-tab-active' : '' ?>">
-				<?php _e('List Queue', 'smtp-mailing-queue')?>
-			</a>
-			<a href="?page=smtp-mailing-queue&tab=tools&tool=listInvalid" class="nav-tab <?php echo $this->activeTool == 'listInvalid' ? 'nav-tab-active' : '' ?>">
-				<?php _e('Sending Errors', 'smtp-mailing-queue')?>
-			</a>
+			<a href="?page=smtp-mailing-queue&tab=tools&tool=testmail" class="nav-tab <?php echo $this->activeTool == 'testmail' ? 'nav-tab-active' : '' ?>">Test Mail</a>
+			<a href="?page=smtp-mailing-queue&tab=tools&tool=processQueue" class="nav-tab <?php echo $this->activeTool == 'processQueue' ? 'nav-tab-active' : '' ?>">Process Queue</a>
+			<a href="?page=smtp-mailing-queue&tab=tools&tool=listQueue" class="nav-tab <?php echo $this->activeTool == 'listQueue' ? 'nav-tab-active' : '' ?>">List Queue</a>
+			<a href="?page=smtp-mailing-queue&tab=tools&tool=listInvalid" class="nav-tab <?php echo $this->activeTool == 'listInvalid' ? 'nav-tab-active' : '' ?>">Sending Errors</a>
 		</h3>
 		<?php
 
@@ -103,46 +83,46 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 		<form method="post" action="">
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row"><?php _e('To email address', 'smtp-mailing-queue') ?></th>
+					<th scope="row">To email address</th>
 					<td>
 						<input type="text" name="smq-test_mail[to]" class="regular-text code"
 						       value="<?php echo ($this->prefill && isset($_POST['smq-test_mail']['to']) ? $_POST['smq-test_mail']['to'] : '' ) ?>"/>
 					</td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php _e('Cc email addresses', 'smtp-mailing-queue') ?></th>
+					<th scope="row">Cc email addresses</th>
 					<td>
 						<input type="text" name="smq-test_mail[cc]" class="regular-text code"
 						       value="<?php echo ($this->prefill && isset($_POST['smq-test_mail']['cc']) ? $_POST['smq-test_mail']['cc'] : '' ) ?>"/>
-						<p class="description"><?php _e('Multiple addresses can be added separated by comma.', 'smtp-mailing-queue') ?></p>
+						<p class="description">Multiple addresses can be added separated by comma.</p>
 					</td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php _e('Bcc email addresses', 'smtp-mailing-queue') ?></th>
+					<th scope="row">Bcc email addresses</th>
 					<td>
 						<input type="text" name="smq-test_mail[bcc]" class="regular-text code"
 						       value="<?php echo ($this->prefill && isset($_POST['smq-test_mail']['bcc']) ? $_POST['smq-test_mail']['bcc'] : '' ) ?>"/>
-						<p class="description"><?php _e('Multiple addresses can be added separated by comma.', 'smtp-mailing-queue') ?></p>
+						<p class="description">Multiple addresses can be added separated by comma.</p>
 					</td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php _e('Subject', 'smtp-mailing-queue') ?></th>
+					<th scope="row">Subject</th>
 					<td>
 						<input type="text" name="smq-test_mail[subject]" class="regular-text code"
 						       value="<?php echo ($this->prefill && isset($_POST['smq-test_mail']['subject']) ? $_POST['smq-test_mail']['subject'] : '' ) ?>"/>
 					</td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php _e('Message', 'smtp-mailing-queue') ?></th>
+					<th scope="row">Message</th>
 					<td>
 						<textarea name="smq-test_mail[message]" class="large-text code" rows="5"><?php echo ($this->prefill && isset($_POST['smq-test_mail']['message']) ? trim($_POST['smq-test_mail']['message']) : '' ) ?></textarea>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><?php _e("Don't wait for cronjob", 'smtp-mailing-queue') ?></th>
+					<th scope="row">Don't wait for cronjob</th>
 					<td>
 						<input type="checkbox" name="smq-test_mail[dont_wait]" id="dont_wait" value="1" <?php echo ($this->prefill && isset($_POST['smq-test_mail']['dont_wait']) ? 'checked="chencked"' : '') ?>>
-						<label for="dont_wait"><?php _e('Send directly without waiting for cronjob to process queue', 'smtp-mailing-queue') ?></label>
+						<label for="dont_wait">Send directly without waiting for cronjob to process queue</label>
 					</td>
 				</tr>
 			</table>
@@ -174,22 +154,22 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 	 */
 	public function sendTestMail() {
 		if(!check_admin_referer('smq-test_mail', 'smq-test_mail_nonce')) {
-			$this->showNotice(__('Looks like you\'re not allowed to do this', 'smtp-mailing-queue'));
+			$this->showNotice('Looks like you\'re not allowed to do this');
 			return;
 		}
 		$data = $_POST['smq-test_mail'];
 
 		$error = false;
 		if(empty($data['to'])) {
-			$this->showNotice(__('Email address required', 'smtp-mailing-queue'));
+			$this->showNotice('Email address required');
 			$error = true;
 		}
 		if(empty($data['subject'])) {
-			$this->showNotice(__('Subject required', 'smtp-mailing-queue'));
+			$this->showNotice('Subject required');
 			$error = true;
 		}
 		if(empty($data['message'])) {
-			$this->showNotice(__('Message required', 'smtp-mailing-queue'));
+			$this->showNotice('Message required');
 			$error = true;
 		}
 		if($error) {
@@ -204,7 +184,7 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 		$bcc = array_filter(array_map('trim', explode(',', $data['bcc'])));
 		foreach ($bcc as $email)
 			$data['headers'][] = 'Bcc:' . $email;
-		if($data['dont_wait'])
+		if(isset($data['dont_wait']) && $data['dont_wait'])
 			$this->reallySendTestmail($data);
 		else
 			$this->writeTestmailToFile($data);
@@ -217,9 +197,9 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 	 */
 	protected function writeTestmailToFile($data) {
 		if(wp_mail( $data['to'], $data['subject'], $data['message'], $data['headers']))
-			$this->showNotice(__('Mail file created. Will be sent when cronjob runs', 'updated', 'smtp-mailing-queue'));
+			$this->showNotice('Mail file created. Will be sent when cronjob runs', 'updated');
 		else
-			$this->showNotice(__('Error writing mail data to file', 'smtp-mailing-queue'));
+			$this->showNotice('Error writing mail data to file');
 	}
 
 	/**
@@ -230,9 +210,9 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 	protected function reallySendTestmail($data) {
 		require_once('SMTPMailingQueueOriginal.php');
 		if(SMTPMailingQueueOriginal::wp_mail($data['to'], $data['subject'], $data['message'], $data['headers']))
-			$this->showNotice(__('Mail successfully sent.', 'smtp-mailing-queue'), 'updated');
+			$this->showNotice('Mail successfully sent.', 'updated');
 		else
-			$this->showNotice(__('Error sending mail', 'smtp-mailing-queue'));
+			$this->showNotice('Error sending mail');
 	}
 
 	/**
@@ -254,13 +234,13 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 		global $smtpMailingQueue;
 
 		if(!check_admin_referer('smq-process_queue', 'smq-process_queue_nonce')) {
-			$this->showNotice(__("Looks like you're not allowed to do this", 'smtp-mailing-queue'));
+			$this->showNotice('Looks like you\'re not allowed to do this');
 			return;
 		}
 
 		$smtpMailingQueue->callProcessQueue();
 
-		$this->showNotice(__('Emails sent', 'smtp-mailing-queue'), 'updated');
+		$this->showNotice('Emails sent', 'updated');
 	}
 
 	/**
@@ -272,19 +252,19 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 		global $smtpMailingQueue;
 		$data = $smtpMailingQueue->loadDataFromFiles(true, $invalid);
 		if(!$data) {
-			echo '<p>' . __('No mails in queue', 'smtp-mailing-queue') . '</p>';
+			echo '<p>No mails in queue</p>';
 			return;
 		}
 		?>
 		<table class="widefat">
 			<thead>
 				<tr>
-					<th><?php _e('Time', 'smtp-mailing-queue') ?></th>
-					<th><?php _e('To', 'smtp-mailing-queue') ?></th>
-					<th><?php _e('Subject', 'smtp-mailing-queue') ?></th>
-					<th><?php _e('Message', 'smtp-mailing-queue') ?></th>
-					<th><?php _e('Headers', 'smtp-mailing-queue') ?></th>
-					<th><?php _e('Attachments', 'smtp-mailing-queue') ?></th>
+					<th>Time</th>
+					<th>To</th>
+					<th>Subject</th>
+					<th>Message</th>
+					<th>Headers</th>
+					<th>Attachments</th>
 				</tr>
 			</thead>
 			<?php $i = 1; ?>
@@ -294,7 +274,7 @@ class SMTPMailingQueueTools extends SMTPMailingQueueAdmin {
 				$dt->setTimestamp($mail['time']);
 				?>
 				<tr class="<?php echo ($i % 2) ? 'alternate' : ''; ?>">
-					<td><?php echo $dt->format(__('F dS Y, H:i', 'smtp-mailing-queue')) ?></td>
+					<td><?php echo $dt->format('F dS Y, H:i') ?></td>
 					<td><?php echo $mail['to'] ?></td>
 					<td><?php echo $mail['subject'] ?></td>
 					<td><?php echo nl2br($mail['message']) ?></td>
